@@ -6,56 +6,57 @@
     <title>CompleteSolution Pharmacy - Patient Information</title>
     <style>body {
     font-family: Arial, sans-serif;
-    margin: 10px; /* Reduce overall margin for mobile */
+    margin: 0; /* Remove default margin */
+    padding: 10px; /* Add padding to body */
     background-color: #f9f9f9;
 }
 
 form {
     background-color: #fff;
-    padding: 20px; /* Add padding for form */
+    padding: 15px; /* Smaller padding for the form */
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin: 0 auto; /* Centered with auto margins */
-    max-width: 400px; /* Maximum width of the form */
+    max-width: 360px; /* Maximum width of the form */
 }
 
 label {
     display: block;
-    margin-top: 8px;
+    margin-top: 5px; /* Smaller margin */
     font-weight: bold;
-    font-size: 14px; /* Smaller font size */
+    font-size: 12px; /* Smaller font size */
 }
 
 input {
-    width: calc(100% - 20px); /* Full width minus padding for borders */
-    padding: 8px; /* Padding inside the input field */
-    margin-top: 5px;
+    width: 100%; /* Full width */
+    padding: 6px; /* Reduced padding for smaller inputs */
+    margin-top: 3px; /* Smaller margin */
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-size: 14px; /* Smaller font size */
+    font-size: 12px; /* Smaller font size */
 }
 
-button {
-    margin-top: 10px;
-    padding: 8px 12px; /* Smaller padding */
+button, .pdf-btn {
+    margin-top: 10px; /* Keep some space above */
+    padding: 6px; /* Smaller padding */
     background-color: #007BFF;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
-    font-size: 14px; /* Smaller font size */
+    font-size: 12px; /* Smaller font size */
     width: 100%; /* Full width for buttons */
 }
 
-button:hover {
-    background-color: #0056b3;
+button:hover, .pdf-btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
 }
 
 #output {
-    margin-top: 15px;
+    margin-top: 10px; /* Smaller margin */
     border: 1px solid #ccc;
-    padding: 10px;
+    padding: 5px; /* Smaller padding */
     border-radius: 4px;
     background-color: #fff;
     max-height: 300px; /* Maintain height for scroll */
@@ -65,14 +66,14 @@ button:hover {
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 15px;
+    margin-top: 10px; /* Smaller margin for table */
 }
 
 th, td {
     border: 1px solid #ccc;
-    padding: 10px;
+    padding: 8px; /* Reduced padding for table cells */
     text-align: left;
-    font-size: 12px; /* Smaller font size for table */
+    font-size: 10px; /* Smaller font size for table */
 }
 
 th {
@@ -87,41 +88,28 @@ td {
 
 #headerTitle {
     text-align: center;
-    font-size: 20px; /* Smaller title size */
-    margin-bottom: 20px;
+    font-size: 18px; /* Smaller title size */
+    margin-bottom: 15px; /* Adjusted margin */
     color: #333;
-}
-
-.pdf-btn {
-    background-color: #28a745;
-    color: white;
-    padding: 8px 12px; /* Smaller padding */
-    margin-bottom: 10px;
-    cursor: pointer;
-    border: none;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-    font-size: 14px; /* Smaller font size */
-    width: 100%; /* Full width for PDF button */
-}
-
-.pdf-btn:hover {
-    background-color: #218838;
 }
 
 #notif {
     color: green;
     font-weight: bold;
-    margin-top: 10px; /* Adjusted margin */
+    margin-top: 8px; /* Adjusted margin */
 }
 
 /* Media Queries for Extra Responsiveness */
 @media (max-width: 600px) {
     form {
-        padding: 10px; /* Less padding on very small screens */
-        max-width: 95%; /* Slightly increase max-width for small screens */
+        padding: 10px; /* Less padding on small screens */
+        max-width: 90%; /* Ensure it doesn't exceed screen width */
     }
 }
+
+    </style>
+</head>
+<body>
 
     <div id="headerTitle">CompleteSolution Pharmacy - Patient Information</div>
 
