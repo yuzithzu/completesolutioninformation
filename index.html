@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CompleteSolution Pharmacy - Patient Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            margin-top: 15px;
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #output {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 4px;
+            background-color: #fff;
+            max-height: 300px; /* Reduced height for scroll */
+            overflow-y: auto; /* Enable vertical scroll */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+        }
+        td {
+            background-color: #f9f9f9;
+        }
+        #headerTitle {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        .pdf-btn {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 15px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .pdf-btn:hover {
+            background-color: #218838;
+        }
+        #notif {
+            color: green;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="headerTitle">CompleteSolution Pharmacy - Patient Information</div>
+
+    <form id="patientForm">
+        <label for="date">Date:</label>
+        <input type="date" id="date" required>
+
+        <label for="patientName">Patient Name:</label>
+        <input type="text" id="patientName" required>
+
+        <label for="hospitalClinic">Hospital/Clinic:</label>
+        <input type="text" id="hospitalClinic" required>
+
+        <label for="physician">Physician:</label>
+        <input type="text" id="physician" required>
+
+        <label for="contactNo">Contact No:</label>
+        <input type="tel" id="contactNo" required>
+
+        <label for="secretary">Secretary:</label>
+        <input type="text" id="secretary" required>
+
+        <label for="secretaryContactNo">Secretary Contact No:</label>
+        <input type="tel" id="secretaryContactNo" required>
+
+        <label for="genericName">Generic Name:</label>
+        <input type="text" id="genericName" required>
+
+        <label for="brandName">Brand Name:</label>
+        <input type="text" id="brandName" required>
+
+        <label for="diagnosis">Diagnosis:</label>
+        <input type="text" id="diagnosis" required>
+
+        <button type="button" onclick="addEntry()">Add Entry</button>
+    </form>
+
+    <button class="pdf-btn" onclick="askToSavePDF()">Download PDF</button>
+
+    <div id="output">
+        <table id="entriesTable">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Patient Name</th>
+                    <th>Hospital/Clinic</th>
+                    <th>Physician</th>
+                    <th>Contact No</th>
+                    <th>Secretary</th>
+                    <th>Secretary Contact No</th>
+                    <th>Generic Name</th>
+                    <th>Brand Name</th>
+                    <th>Diagnosis</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Entries will be added here -->
+            </tbody>
+        </table>
+    </div>
+
+    <div id="notif"></div>
+
+    <!-- Include jsPDF and autoTable from a CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+    <script>
+        // Load existing entries from local storage
+        window.onload = loadEntries;
+
+        function loadEntries() {
+            const entries = JSON.parse(localStorage.getItem('patientEntries')) || [];
+            entries.forEach(entry => addRowToTable(entry));
+        }
+
+        // Function to add entries into the table and local storage
+        function addEntry() {
+            const date = document.getElementById('date').value;
+            const patientName = document.getElementById('patientName').value;
+            const hospitalClinic = document.getElementById('hospitalClinic').value;
+            const physician = document.getElementById('physician').value;
+            const contactNo = document.getElementById('contactNo').value;
+            const secretary = document.getElementById('secretary').value;
+            const secretaryContactNo = document.getElementById('secretaryContactNo').value;
+            const genericName = document.getElementById('genericName').value;
+            const brandName = document.getElementById('brandName').value;
+            const diagnosis = document.getElementById('diagnosis').value;
+
+            if (!date || !patientName || !hospitalClinic || !physician || !contactNo || !secretary || !secretaryContactNo || !genericName || !brandName || !diagnosis) {
+                alert("Please fill in all the fields.");
+                return;
+            }
+
+            const newEntry = {
+                date,
+                patientName,
+                hospitalClinic,
+                physician,
+                contactNo,
+                secretary,
+                secretaryContactNo,
+                genericName,
+                brandName,
+                diagnosis
+            };
+
+            addRowToTable(newEntry);
+            saveEntryToLocalStorage(newEntry);
+            document.getElementById('patientForm').reset();
+        }
+
+        // Function to add a new row to the table
+        function addRowToTable(entry) {
+            const tableBody = document.getElementById('entriesTable').getElementsByTagName('tbody')[0];
+            const newRow = tableBody.insertRow();
+            newRow.innerHTML = `
+                <td>${entry.date}</td>
+                <td>${entry.patientName}</td>
+                <td>${entry.hospitalClinic}</td>
+                <td>${entry.physician}</td>
+                <td>${entry.contactNo}</td>
+                <td>${entry.secretary}</td>
+                <td>${entry.secretaryContactNo}</td>
+                <td>${entry.genericName}</td>
+                <td>${entry.brandName}</td>
+                <td>${entry.diagnosis}</td>
+            `;
+        }
+
+        // Function to save entry to local storage
+        function saveEntryToLocalStorage(entry) {
+            const entries = JSON.parse(localStorage.getItem('patientEntries')) || [];
+            entries.push(entry);
+            localStorage.setItem('patientEntries', JSON.stringify(entries));
+        }
+
+        // Function to ask the user if they want to save the PDF
+        function askToSavePDF() {
+            const savePDF = confirm("Do you want to save the PDF?");
+            if (savePDF) {
+                generatePDF();
+                document.getElementById("notif").innerHTML = "PDF has been saved!";
+            } else {
+                document.getElementById("notif").innerHTML = "PDF not saved.";
+            }
+        }
+
+        // Function to generate PDF in landscape format
+        function generatePDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF('landscape');
+
+            // Title of the PDF
+            doc.setFontSize(18);
+            doc.text("CompleteSolution Pharmacy - Patient Information", 10, 20); // Adjusted margin
+
+            // Get the table element
+            const table = document.getElementById('entriesTable');
+
+            // Convert table rows to data
+            const rows = Array.from(table.querySelectorAll('tr')).map(row => {
+                return Array.from(row.querySelectorAll('td, th')).map(cell => cell.innerText);
+            });
+
+            // Add the table data to the PDF
+            doc.autoTable({
+                head: [rows[0]],  // Table headers
+                body: rows.slice(1),  // Table body
+                theme: 'grid',  // Use a grid theme
+                styles: {
+                    cellPadding: 3,
+                    fontSize: 5,
+                    valign: 'middle',
+                },
+                headStyles: {
+                    fillColor: '#007BFF',
+                    textColor: '#FFFFFF',
+                    fontStyle: 'bold',
+                },
+                bodyStyles: {
+                    fillColor: '#f9f9f9',
+                    textColor: '#000000',
+                },
+                margin: { top: 30, left: 10, right: 10 }, // Fixed margin for header
+                autoSize: true // Auto-fit columns to page width
+            });
+
+            // Trigger the "Save As" dialog to let the user choose where to save the file
+            doc.save('patient_info.pdf');
+        }
+    </script>
+</body>
+</html>
