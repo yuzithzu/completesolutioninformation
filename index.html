@@ -4,20 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CompleteSolution Pharmacy - Patient Information</title>
-    <style>body {
+    <style>
+body {
     font-family: Arial, sans-serif;
     margin: 0; /* Remove default margin */
-    padding: 10px; /* Add padding to body */
+    padding: 20px; /* Padding around the body for breathing space */
     background-color: #f9f9f9;
 }
 
 form {
     background-color: #fff;
-    padding: 15px; /* Smaller padding for the form */
+    padding: 15px; /* Padding for the form */
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin: 0 auto; /* Centered with auto margins */
-    max-width: 360px; /* Maximum width of the form */
+    max-width: 400px; /* Maximum width of the form */
+    width: 100%; /* Full width on smaller screens */
 }
 
 label {
@@ -28,16 +30,16 @@ label {
 }
 
 input {
-    width: 100%; /* Full width */
+    width: calc(100% - 12px); /* Full width minus padding for borders */
     padding: 6px; /* Reduced padding for smaller inputs */
-    margin-top: 3px; /* Smaller margin */
+    margin-top: 5px; /* Smaller margin */
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 12px; /* Smaller font size */
 }
 
 button, .pdf-btn {
-    margin-top: 10px; /* Keep some space above */
+    margin-top: 10px; /* Space above the button */
     padding: 6px; /* Smaller padding */
     background-color: #007BFF;
     color: white;
@@ -54,7 +56,7 @@ button:hover, .pdf-btn:hover {
 }
 
 #output {
-    margin-top: 10px; /* Smaller margin */
+    margin-top: 15px; /* Smaller margin */
     border: 1px solid #ccc;
     padding: 5px; /* Smaller padding */
     border-radius: 4px;
@@ -71,9 +73,9 @@ table {
 
 th, td {
     border: 1px solid #ccc;
-    padding: 8px; /* Reduced padding for table cells */
+    padding: 6px; /* Reduced padding for table cells */
     text-align: left;
-    font-size: 10px; /* Smaller font size for table */
+    font-size: 12px; /* Smaller font size for table */
 }
 
 th {
@@ -88,7 +90,7 @@ td {
 
 #headerTitle {
     text-align: center;
-    font-size: 18px; /* Smaller title size */
+    font-size: 18px; /* Title size */
     margin-bottom: 15px; /* Adjusted margin */
     color: #333;
 }
@@ -102,7 +104,6 @@ td {
 /* Media Queries for Extra Responsiveness */
 @media (max-width: 600px) {
     form {
-        padding: 10px; /* Less padding on small screens */
         max-width: 90%; /* Ensure it doesn't exceed screen width */
     }
 }
