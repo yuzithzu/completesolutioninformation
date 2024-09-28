@@ -12,11 +12,11 @@
 
 form {
     background-color: #fff;
-    padding: 15px; /* Reduced padding */
+    padding: 20px; /* Add padding for form */
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin: 10px auto; /* Centered with less margin */
-    max-width: 90%; /* Maximum width of the form */
+    margin: 0 auto; /* Centered with auto margins */
+    max-width: 400px; /* Maximum width of the form */
 }
 
 label {
@@ -27,8 +27,8 @@ label {
 }
 
 input {
-    width: 100%; /* Full width */
-    padding: 8px; /* Reduced padding */
+    width: calc(100% - 20px); /* Full width minus padding for borders */
+    padding: 8px; /* Padding inside the input field */
     margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -45,6 +45,7 @@ button {
     cursor: pointer;
     transition: background-color 0.3s;
     font-size: 14px; /* Smaller font size */
+    width: 100%; /* Full width for buttons */
 }
 
 button:hover {
@@ -101,6 +102,7 @@ td {
     border-radius: 4px;
     transition: background-color 0.3s;
     font-size: 14px; /* Smaller font size */
+    width: 100%; /* Full width for PDF button */
 }
 
 .pdf-btn:hover {
@@ -119,11 +121,8 @@ td {
         padding: 10px; /* Less padding on very small screens */
         max-width: 95%; /* Slightly increase max-width for small screens */
     }
-
-    button, .pdf-btn {
-        width: 100%; /* Full width buttons */
-    }
 }
+
     <div id="headerTitle">CompleteSolution Pharmacy - Patient Information</div>
 
     <form id="patientForm">
